@@ -8,7 +8,7 @@ requirements:
 
 3. Install Modules -> (type `npm i` in cmd prompt it will install automatically)
 
-4. Filled `config.json` with correct details
+4. Fill `config.json` with correct details
 
 
 HOW TO USE THE BOT
