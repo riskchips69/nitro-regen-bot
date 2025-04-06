@@ -6,7 +6,7 @@ requirements:
 
 2. Discord Bot -> https://discord.com/developers/applications
 
-3. Installed Modules -> (type `npm i` in cmd prompt it will install automatically)
+3. Install Modules -> (type `npm i` in cmd prompt it will install automatically)
 
 4. Filled `config.json` with correct details
 
