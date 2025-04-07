@@ -2,15 +2,14 @@ const { Client, GatewayIntentBits, REST, Routes, EmbedBuilder, AttachmentBuilder
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-const config = path.join(process.cwd(), "config.json");
+const config = require('./config.json');
 const fetchGift = require('./src/skudetails');
 const generateGiftCodes = require('./src/generate')
 const deleteGiftCodes = require('./src/delete')
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 const rest = new REST({ version: '10' }).setToken(config.bot.token);
-const TOKEN_FILE = path.join(process.cwd(), 'token.json');
-
+const TOKEN_FILE = path.join(__dirname, 'token.json');
 const commands = [
     {
         name: 'add-token',
@@ -97,8 +96,7 @@ client.on('interactionCreate', async interaction => {
     if (interaction.isModalSubmit() && interaction.customId === 'regenCustomLinkModal') {
         await interaction.deferReply({ ephemeral: true });
         try {
-            let tokensData = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'token.json'), 'utf-8'));
-            let token = tokensData.token;
+            let tokensData = JSON.parse(fs.readFileSync(path.join(__dirname, 'token.json'), 'utf-8'));            let token = tokensData.token;
 
             let input = interaction.fields.getTextInputValue('giftCodes')
                 .split(/\r?\n/)
@@ -462,8 +460,7 @@ client.on('interactionCreate', async interaction => {
                
 fileName = gift.name.toLowerCase().replace(/\s+/g, "-")
 
-const filePath = path.join(process.cwd(), fileName);
-                
+const filePath = path.join(__dirname, fileName);                
                 fs.writeFileSync(filePath, formattedCodes);
                 filePaths.push(filePath);
             }
